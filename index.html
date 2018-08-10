@@ -11,6 +11,8 @@
         #messages { list-style-type: none; margin: 0; padding: 0; }
         #messages li { padding: 5px 10px; }
         #messages li:nth-child(odd) { background: #eee; }
+        #messages li.connect { background: #ccffcc; }
+        #messages li.disconnect { background: #ffcccc; }
     </style>
 </head>
 <body>
@@ -21,13 +23,23 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      $( () => {
+      $(() => {
         const socket = io()
+        const message = $('#m')
+
+        // User events
+        socket.on('user status', (data) => {
+          $('#messages').append($(`<li class="${data.type}">`).text(data.msg))
+        })
+
+        // Send chat messages to sever
         $('form').submit( () => {
-          socket.emit('chat message', $('#m').val())
-          $('#m').val('')
+          socket.emit('chat message', message.val())
+          message.val('')
           return false
         })
+
+        // Show messages from users
         socket.on('chat message', (msg) => {
           $('#messages').append($('<li>').text(msg))
         })
