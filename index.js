@@ -6,8 +6,12 @@ app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
 
 io.on('connection', (socket) => {
   console.log('a user connected')
+  io.emit('chat message', 'a user connected')
   socket.on('chat message', (msg) => io.emit('chat message', msg))
-  socket.on('disconnect', () => console.log('user disconnected'))
+  socket.on('disconnect', () => {
+    console.log('a user disconnected')
+    io.emit('chat message', 'a user disconnected')
+  })
 })
 
 http.listen(3000, () => console.log('listening on *:3000'))
