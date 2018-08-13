@@ -40,8 +40,8 @@
         })
 
         // Show messages from users
-        socket.on('chat message', (msg) => {
-          $('#messages').append($('<li>').text(msg))
+        socket.on('chat message', (data) => {
+          $('#messages').append($('<li>').text(`${data.name}: ${data.msg}`))
         })
       })
     </script>
