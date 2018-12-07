@@ -1,7 +1,8 @@
 {
-  "name": "socket-chat-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
+  "name": "chatter-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "My first socket.io app",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
