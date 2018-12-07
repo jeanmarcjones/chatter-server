@@ -1,6 +1,13 @@
-# Chatter
+# Chatter Server
 
 An expanded version of the socket.io [Getting Started](http://socket.io/get-started/chat/) project.
+
+### Usage
+
+Run these commands to get started:
+
+* `npm install`
+* `node server`
 
 ### Todo
 
