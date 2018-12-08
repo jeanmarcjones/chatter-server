@@ -18,9 +18,9 @@ app.post('/post', bodyParser.json(), (req, res) => {
 // Socket.io client connection
 io.on('connection', (client) => {
 
-  // client join event handler
+  // Client join event handler
   client.on('join', (user) => {
-    // adds new user with its id as index
+    // Adds new user with its id as index
     users[user.id] = {
       name: user.name
     }
