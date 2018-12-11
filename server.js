@@ -22,6 +22,7 @@ io.on('connection', (client) => {
   client.on('join', (user) => {
     // Adds new user with its id as index
     users[user.id] = {
+      id: client.id,
       name: user.name
     }
     console.log('User %s connected', user.name)
@@ -29,6 +30,20 @@ io.on('connection', (client) => {
     io.emit('update', `${user.name} has joined.`)
   })
 
+  // Client disconnect event handler
+  client.on('disconnect', () => {
+    // check for saved users and store there object key
+    let keys = Object.keys(users)
+    if (keys.length) {
+      // find the disconnecting clients data in users
+      let user = keys.reduce((key) => {
+        if (users[key].id === client.id)
+          return users[key]
+      })
+      // Broadcast when a user disconnects
+      io.emit('update', `${user.name} has disconnected.`)
+    }
+  })
 })
 
 server.listen(port, () => {
