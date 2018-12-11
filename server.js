@@ -25,7 +25,7 @@ io.on('connection', (client) => {
       name: user.name
     }
     console.log('User %s connected', user.name)
-    // Updates clients on join event
+    // Broadcasts when a user joins
     io.emit('update', `${user.name} has joined.`)
   })
 
