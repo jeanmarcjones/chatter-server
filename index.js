@@ -8,11 +8,17 @@ const randomWords = require('random-words')
 
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
 
+app.get('/chat', (req, res) => res.sendFile(__dirname + '/chat.html'))
+
 io.on('connection', (socket) => {
 
   // Set username
-  const connectedUserId = socket.id;
-  connectedUserMap.set(socket.id, { status:'online', name: randomWords()});
+  const connectedUserId = socket.id
+
+  // Set username's
+  socket.on('user name', (name) => {
+    connectedUserMap.set(socket.id, { status: 'online', name: name })
+  })
 
   // Broadcast when a user connects
   console.log('a user connected')
