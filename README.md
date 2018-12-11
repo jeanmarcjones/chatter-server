@@ -6,7 +6,7 @@ An expanded version of the socket.io [Getting Started](http://socket.io/get-star
 
 Run these commands to get started:
 
-* `npm install`
+* `yarn install`
 * `node server`
 
 ### Todo
