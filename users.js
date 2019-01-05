@@ -39,3 +39,12 @@ function update(key, user) {
     ...user
   }
 }
+
+module.exports = {
+  getKeys,
+  getByKey,
+  getBySession,
+  add,
+  remove,
+  update
+}
