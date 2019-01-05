@@ -33,6 +33,16 @@ io.on('connection', (client) => {
     console.log('User %s connected', user.name)
   })
 
+  client.on('leave', (user) => {
+    // Broadcast when a user leaves
+    client.emit('disconnected')
+    // Confirm disconnection to client
+    io.emit('update', `${users.getByKey(user.id).name} has left.`)
+    users.update(user.id, {online: false})
+    // Disconnect client
+    client.disconnect()
+  })
+
   // Client disconnect event handler
   client.on('disconnect', () => {
     // check for saved users and store there object key
