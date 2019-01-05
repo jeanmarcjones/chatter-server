@@ -45,16 +45,13 @@ io.on('connection', (client) => {
 
   // Client disconnect event handler
   client.on('disconnect', () => {
-    // check for saved users and store there object key
-    let keys = Object.keys(users)
-    if (keys.length) {
-      // find the disconnecting clients data in users
-      let user = keys.reduce((key) => {
-        if (users[key].id === client.id)
-          return users[key]
-      })
+    // Checks for no registered users
+    if (users.getKeys().length > 0) {
+      let user = users.getBySession(client.id)
+      users.update(user.key, {online: false})
       // Broadcast when a user disconnects
       io.emit('update', `${user.name} has disconnected.`)
+      console.log('User %s disconnected', user.name)
     }
   })
 })
