@@ -4,9 +4,9 @@ const io = require('socket.io')(server)
 
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const users = require('./users')
 
 const port = process.env.PORT || 3001
-const users = {}
 
 app.use(cors())
 
