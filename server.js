@@ -21,13 +21,16 @@ io.on('connection', (client) => {
   // Client join event handler
   client.on('join', (user) => {
     // Adds new user with its id as index
-    users[user.id] = {
-      id: client.id,
-      name: user.name
-    }
-    console.log('User %s connected', user.name)
+    users.add(user.id, {
+      sessionId: client.id,
+      name: user.name,
+      online: true
+    })
+    // Confirm authentication to client
+    client.emit('joined')
     // Broadcasts when a user joins
     io.emit('update', `${user.name} has joined.`)
+    console.log('User %s connected', user.name)
   })
 
   // Client disconnect event handler
