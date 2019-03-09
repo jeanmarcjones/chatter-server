@@ -38,7 +38,6 @@ io.on('connection', (client) => {
     client.emit('disconnected')
     // Confirm disconnection to client
     io.emit('update', `${users.getByKey(user.id).name} has left.`)
-    users.update(user.id, {online: false})
     // Disconnect client
     client.disconnect()
   })
