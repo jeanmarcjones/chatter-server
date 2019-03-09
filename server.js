@@ -47,7 +47,9 @@ io.on('connection', (client) => {
     // Checks for no registered users
     if (users.getKeys().length > 0) {
       let user = users.getBySession(client.id)
-      users.update(user.key, {online: false})
+      users.update(user.key, {
+        online: false
+      })
       // Broadcast when a user disconnects
       io.emit('update', `${user.name} has disconnected.`)
       console.log('User %s disconnected', user.name)
