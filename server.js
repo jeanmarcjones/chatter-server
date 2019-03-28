@@ -34,10 +34,11 @@ io.on('connection', (client) => {
   })
 
   client.on('leave', (user) => {
+    let userName = users.getByKey(user.id).name
     // Broadcast when a user leaves
     client.emit('disconnected')
     // Confirm disconnection to client
-    io.emit('update', `${users.getByKey(user.id).name} has left.`)
+    io.emit('update', `${userName} has left.`)
     // Disconnect client
     client.disconnect()
   })
