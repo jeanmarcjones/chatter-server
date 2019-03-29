@@ -56,6 +56,15 @@ io.on('connection', (client) => {
       console.log('User %s disconnected', user.name)
     }
   })
+
+  // Show messages from users
+  client.on('postMessage', (message) => {
+    let user = users.getBySession(client.id)
+    io.emit('broadcastMessage', {
+      ...message,
+      ...{ name: user.name }
+    })
+  })
 })
 
 server.listen(port, () => {
