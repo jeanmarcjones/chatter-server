@@ -58,11 +58,11 @@ io.on('connection', (client) => {
   })
 
   // Show messages from users
-  client.on('postMessage', (message) => {
+  client.on('postMessage', ({ message }) => {
     let user = users.getBySession(client.id)
     io.emit('broadcastMessage', {
       ...message,
-      ...{ name: user.name }
+      name: user.name
     })
   })
 })
