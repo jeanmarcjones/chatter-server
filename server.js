@@ -60,7 +60,7 @@ io.on('connection', (client) => {
   // Show messages from users
   client.on('postMessage', ({ message }) => {
     let user = users.getBySession(client.id)
-    io.emit('broadcastMessage', {
+    client.broadcast.emit('broadcastMessage', {
       ...message,
       name: user.name
     })
