@@ -9,13 +9,12 @@ function getByKey(key) {
 }
 
 function getBySession(sId) {
-  let key = getKeys().reduce((key) => {
-    if (users[key].id === sId)
-      return users[key]
+  let key = getKeys().filter(key => {
+    return users[key].sessionId === sId
   })
   return {
     ...users[key],
-    key: key
+    key: key[0]
   }
 }
 
@@ -41,6 +40,7 @@ function update(key, user) {
 }
 
 module.exports = {
+  get,
   getKeys,
   getByKey,
   getBySession,
