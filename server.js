@@ -4,7 +4,9 @@ const io = require('socket.io')(server)
 
 const bodyParser = require('body-parser')
 const cors = require('cors')
+
 const users = require('./users')
+const helpers = require('./utils/helpers')
 
 const port = process.env.PORT || 3001
 
@@ -13,6 +15,19 @@ app.use(cors())
 app.post('/post', bodyParser.json(), (req, res) => {
   console.log(req.body)
   res.end()
+})
+
+app.get('/users', (req, res) => {
+  users.get()
+    .then(
+      (data) => res.send(data),
+      (error) => {
+        console.error(error)
+        res.status(500).send({
+          error: 'There was an error'
+        })
+      }
+    )
 })
 
 // Socket.io client connection
@@ -29,7 +44,12 @@ io.on('connection', (client) => {
     // Confirm authentication to client
     client.emit('joined')
     // Broadcasts when a user joins
-    io.emit('update', `${user.name} has joined.`)
+    client.broadcast.emit('update', {
+      id: helpers.uuid(),
+      type: 'connect',
+      text: `${user.name} has joined.`,
+      name: 'Updates'
+    })
     console.log('User %s connected', user.name)
   })
 
@@ -37,8 +57,13 @@ io.on('connection', (client) => {
     let userName = users.getByKey(user.id).name
     // Broadcast when a user leaves
     client.emit('disconnected')
-    // Confirm disconnection to client
-    io.emit('update', `${userName} has left.`)
+    // // Broadcast when a user logs out
+    client.broadcast.emit('update', {
+      id: helpers.uuid(),
+      type: 'disconnect',
+      text: `${userName} has left.`,
+      name: 'Updates'
+    })
     // Disconnect client
     client.disconnect()
   })
@@ -51,8 +76,6 @@ io.on('connection', (client) => {
       users.update(user.key, {
         online: false
       })
-      // Broadcast when a user disconnects
-      io.emit('update', `${user.name} has disconnected.`)
       console.log('User %s disconnected', user.name)
     }
   })
