@@ -4,10 +4,13 @@ An expanded version of the socket.io [Getting Started](http://socket.io/get-star
 
 ### Usage
 
-Run these commands to get started:
+To view the project you must:
 
-* `yarn install`
-* `node server`
+* Install all project dependencies with `yarn install`
+* Start the Node server with `node server`
+* Start the client (see Client section)
+
+### Client
 
 Download and run the client found here [Chatter Client](https://github.com/jeanmarcjones/chatter)
 
@@ -20,3 +23,5 @@ Download and run the client found here [Chatter Client](https://github.com/jeanm
 - [ ] Show who’s online
 - [ ] Add private messaging
 - [x] Create frontend with react
+- [ ] Store messages on the server?
+- [ ] Make users an array of objects?
