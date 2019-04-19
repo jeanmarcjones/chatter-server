@@ -1,5 +1,13 @@
 const users = {}
 
+function get() {
+  return new Promise((res) => {
+    res(
+      getAll()
+    )
+  })
+}
+
 function getKeys() {
   return Object.keys(users)
 }

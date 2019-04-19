@@ -12,11 +12,7 @@ const port = process.env.PORT || 3001
 
 app.use(cors())
 
-app.post('/post', bodyParser.json(), (req, res) => {
-  console.log(req.body)
-  res.end()
-})
-
+// Testing endpoint
 app.get('/users', (req, res) => {
   users.get()
     .then(
@@ -28,6 +24,11 @@ app.get('/users', (req, res) => {
         })
       }
     )
+})
+
+app.post('/post', bodyParser.json(), (req, res) => {
+  console.log(req.body)
+  res.end()
 })
 
 // Socket.io client connection
