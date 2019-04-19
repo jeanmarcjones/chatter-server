@@ -2,7 +2,7 @@
 
 An expanded version of the socket.io [Getting Started](http://socket.io/get-started/chat/) project.
 
-### Usage
+### Getting Started
 
 To view the project you must:
 
