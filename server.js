@@ -74,6 +74,7 @@ io.on('connection', (client) => {
     // Checks for no registered users
     if (users.getKeys().length > 0) {
       let user = users.getBySession(client.id)
+      // Set disconnected user online status
       users.update(user.key, {
         online: false
       })
