@@ -28,5 +28,13 @@ Download and run the client found here [Chatter Client](https://github.com/jeanm
 - [ ] Show who’s online
 - [ ] Add private messaging
 - [x] Create frontend with react
-- [ ] Store messages on the server?
-- [ ] Make users an array of objects?
+- [ ] Store messages on the server
+- [ ] No duplicate usernames
+
+### Contributing
+
+This repository is a personal project. Therefore, pull requests will not be accepted.
+
+### Licence
+
+This project is licensed under the Unlicense license.
