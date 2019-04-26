@@ -1,8 +1,11 @@
 # Chatter Server
 
-An expanded version of the socket.io [Getting Started](http://socket.io/get-started/chat/) project.
+The back-end server for a [chat room app](https://github.com/jeanmarcjones/chatter). This project was inspired by the 
+socket.io [getting started](http://socket.io/get-started/chat/) project.
 
-### Getting Started
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+### Getting started
 
 To view the project you must:
 
@@ -10,11 +13,13 @@ To view the project you must:
 * Start the Node server with `node server`
 * Start the client (see Client section)
 
+You may use `npm` instead of `yarn` to install the dependencies.
+
 ### Client
 
 Download and run the client found here [Chatter Client](https://github.com/jeanmarcjones/chatter)
 
-### Todo
+### TODO
 
 - [x] Broadcast a message to connected users when someone connects or disconnects
 - [x] Add support for nicknames
